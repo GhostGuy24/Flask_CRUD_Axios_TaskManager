@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Edit Task</h2>
+<div id="task-form">
+    <div>
+        <label for="name"><strong>Task Name:</strong></label><br>
+        <input type="text" id="name" name="name"  required><br><br>
+    </div>
+
+    <div>
+        <label for="description"><strong>Description:</strong></label><br>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+    </div>
+
+    <div>
+        <label for="deadline"><strong>Deadline:</strong></label><br>
+        <input type="date" id="deadline" name="deadline" required><br><br>
+    </div>
+
+    <div>
+        <button type="button" onclick="updTask({{task.id}})">Save Changes</button>
+    </div>
+</div>
+
+<script>
+const updTask =(id)=>{
+    const name = document.getElementById("name").value;
+    const description = document.getElementById("description").value;
+    const deadline = document.getElementById("deadline").value;
+
+
+    axios.put(`http://127.0.0.1:5000/upd/${id}`,{
+            name: name,
+            description: description,
+            deadline: deadline
+        })
+        window.location.href = "http://127.0.0.1:5000/"
+
+}
+
+</script>
+{% endblock %}

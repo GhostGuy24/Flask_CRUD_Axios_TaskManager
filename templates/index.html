@@ -1,0 +1,51 @@
+{%extends "layout.html" %}
+{% block content %}
+<div class="task">
+    {% for task in tasks %}
+    {% if not task.completed%}
+    <li class="task">
+        <strong>Name:</strong> {{ task.name }} |
+        <strong>Description:</strong> {{ task.description }} |
+        <strong>Deadline:</strong> {{ task.deadline }} |
+        <div class="task-actions">
+            <button onclick="completed_task({{ task.id }}, {{ task.completed | tojson }}, '{{ task.name }}', '{{ task.description }}', '{{ task.deadline }}')"> Mark as Completed</button>                
+            <a href="{{ url_for('edit_task', id=task.id) }}">
+                <button>Edit</button>
+            </a>
+            <button onclick="delTask({{task.id}})" class="delete-task" data-task-id="1">Delete</button>
+        </div>
+    </li>
+    {% else %}
+    <li class="task">
+        <strong>Name:</strong> {{ task.name }} |
+        <strong>Description:</strong> {{ task.description }} |
+        <strong>Deadline:</strong> {{ task.deadline }} |
+        <strong>Status:</strong> <p style="background-color: chartreuse;">Completed! </p>
+    </li>
+    {% endif %}
+    {% endfor %}
+    
+</div>
+<script>
+const delTask =(id) =>{
+    axios.delete(`http://127.0.0.1:5000/del/${id}`)
+    window.location.reload()    
+}
+
+const completed_task =(id, currentStatus, name, description, deadline)=>{
+    const newStatus = !currentStatus;
+    axios.put(`http://127.0.0.1:5000/upd/${id}`,{
+        name: name,
+        description: description,
+        deadline: deadline,
+        completed: newStatus    
+    })
+    
+
+    window.location.reload()
+}
+
+</script>
+
+
+{% endblock %}

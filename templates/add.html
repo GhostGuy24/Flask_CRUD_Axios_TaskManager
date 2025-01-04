@@ -1,0 +1,49 @@
+{%extends "layout.html" %}
+{% block content %}
+
+<div id="task-form">
+    <div>
+        <label for="name"><strong>Task Name:</strong></label><br>
+        <input type="text" id="name" placeholder="Enter task name" required><br><br>
+    </div>
+
+    <div>
+        <label for="description"><strong>Description:</strong></label><br>
+        <textarea id="description" placeholder="Enter task description" rows="4"></textarea><br><br>
+    </div>
+
+    <div>
+        <label for="deadline"><strong>Deadline:</strong></label><br>
+        <input type="date" id="deadline" required><br><br>
+    </div>
+
+    <div>
+        <button type="button" onclick="addTask()">Add Task</button>
+    </div>
+</div>
+
+
+<script>
+    const addTask = () => {
+        const name = document.getElementById("name").value;
+        const description = document.getElementById("description").value;
+        const deadline = document.getElementById("deadline").value;
+
+
+        axios.post("http://127.0.0.1:5000/add", {
+            name: name,
+            description: description,
+            deadline: deadline
+        }
+
+        )
+        window.location.href = "http://127.0.0.1:5000/"
+
+    }
+
+
+    
+</script>
+
+
+{%endblock%}
