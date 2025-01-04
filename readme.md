@@ -35,12 +35,15 @@ The Flask Task Manager is a web-based application designed to manage tasks effic
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/GhostGuy24/Flask_CRUD_Axios_TaskManager.git
    cd flask-task-manager
 2. Install dependencies:
+    ```bash
     pip install -r requirements.txt
 3.Run the Flask application:
+    ```bash
     Flask run
 4. Access the application in your browser:
+    ```bash
     http://127.0.0.1:5000/
     
