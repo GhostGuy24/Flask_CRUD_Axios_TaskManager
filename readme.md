@@ -40,7 +40,7 @@ The Flask Task Manager is a web-based application designed to manage tasks effic
 2. Install dependencies:
     ```bash
     pip install -r requirements.txt
-3.Run the Flask application:
+3. Run the Flask application:
     ```bash
     Flask run
 4. Access the application in your browser:
